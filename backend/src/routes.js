@@ -1,11 +1,15 @@
 const express = require("express")
+const crypto = require('crypto')
 
 const routes = express.Router()
 
 routes.post("/ongs",(req, res) => {
-    const body = req.body
-    console.log(body)
-    return res.json({msg:"ola glr"})
+
+    const {name, email, whatsapp, ciy, uf} = req.body
+
+    const id = crypto.randomBytes(4).toString('HEX')
+
+    return res.json()
 })
 
 module.exports = routes
