@@ -5,7 +5,6 @@ const connection = require('./database/connection')
 const routes = express.Router()
 
 
-
 routes.post("/ongs",async (req, res) => {
 
     const {name, email, whatsapp, city, uf} = req.body
