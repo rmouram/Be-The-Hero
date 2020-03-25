@@ -11,4 +11,6 @@ routes.post("/ongs", Ongcontroller.create)
 routes.get("/incidents", Incidentcontroller.list)
 routes.post("/incidents", Incidentcontroller.create)
 
+routes.delete("/incidents/:id", Incidentcontroller.delete)
+
 module.exports = routes
