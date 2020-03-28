@@ -29,9 +29,9 @@ module.exports = {
 
         const ong = await connection("ongs")
             .where("id", ong_id)
-            .select("*")
+            .delete()
 
-        return res.json(ong)
+        return res.status(204).send()
     }
 
 }
