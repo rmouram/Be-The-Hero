@@ -22,5 +22,16 @@ module.exports = {
     async list(req, res){
         const ongs = await connection('ongs').select('*')
         return res.json(ongs)
-    } 
+    },
+
+    async delete(req, res){
+        const ong_id = req.headers.authorization
+
+        const ong = await connection("ongs")
+            .where("id", ong_id)
+            .select("*")
+
+        return res.json(ong)
+    }
+
 }

@@ -11,6 +11,7 @@ routes.post("/session", Sessioncontroller.create)
 
 routes.get("/ongs", Ongcontroller.list)
 routes.post("/ongs", Ongcontroller.create)
+routes.get("/ongs", Ongcontroller.delete)
 
 routes.get("/incidents", Incidentcontroller.list)
 routes.post("/incidents", Incidentcontroller.create)
