@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {FiArrowLeft} from "react-icons/fi"
-import {Link} from "react-router-dom"
+import {Link, useHistory} from "react-router-dom"
 
 import api from '../../services/api'
 import './styles.css'
@@ -14,13 +14,25 @@ export default function Register(){
     const [city, setCity] = useState()
     const [uf, setUf] = useState()
 
-    function handleRegister(e){
-        e.preventDefault();
+    const history = useHistory()
+
+    async function handleRegister(e){
+        e.preventDefault()
+        const data = {
+            name, email, whatsapp, city, uf
+        }
+        try {
+            const response = await api.post("ongs", data)
+            alert(`Seu ID de acesso:${response.data.id}`)
+            history.push("/")
+        } catch (error) {
+            alert("Erro no cadastro, tente novamente")
+        }
+        
     }
 
-    console.log({
-        name, email, whatsapp, city, uf
-    })
+    
+
 
     return(
         <div className="register-container">
@@ -36,7 +48,7 @@ export default function Register(){
                     </Link>
 
                 </section>
-                <form onSubmit={handleRegister}>
+                <form onSubmit= {handleRegister} >
                     <input 
                         placeholder="Nome da ONG"
                         value = {name}
@@ -53,7 +65,7 @@ export default function Register(){
                         value = {whatsapp}
                         onChange={e => setWhatsapp(e.target.value)}
                     />
-                    <div>
+                    <div className="input-group">
                         <input 
                             placeholder="Cidade"
                             value = {city}
@@ -67,7 +79,7 @@ export default function Register(){
                         />
                     </div>
 
-                    <button className="button">Registrar</button>
+                    <button className="button" type="submit">Registrar</button>
                 </form>
             </div>
         </div>
